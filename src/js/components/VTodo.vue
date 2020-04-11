@@ -1,8 +1,8 @@
 <template>
   <div class="v-todo">
     <label class="task" :class="{ done: todo.done }">{{ todo.task }}</label>
-    <button @click="$emit('onClickToggleButton')">Toggle</button>
-    <button @click="$emit('onClickDeleteButton')">Delete</button>
+    <button class="toggle" @click="$emit('onClickToggleButton')">Toggle</button>
+    <button class="delete" @click="$emit('onClickDeleteButton')">Delete</button>
   </div>
 </template>
 
