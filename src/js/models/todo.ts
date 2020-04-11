@@ -1,5 +1,10 @@
 class Todo {
-  constructor(task) {
+
+  id: number
+  task: string
+  done: boolean
+
+  constructor(task: string) {
     this.id = Math.random();
     this.task = task;
     this.done = false;

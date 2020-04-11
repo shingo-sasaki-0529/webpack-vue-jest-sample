@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "public")
   },
   resolve: {
-    extensions: [".js", ".vue"],
+    extensions: [".ts", ".js", ".vue"],
     alias: {
       vue$: "vue/dist/vue.js",
       "@": path.resolve(__dirname, "src/js")
@@ -18,6 +18,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /.ts$/,
+        loader: "ts-loader"
+      },
       {
         test: /.vue$/,
         loader: "vue-loader"

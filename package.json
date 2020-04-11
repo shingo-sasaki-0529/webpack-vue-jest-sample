@@ -6,12 +6,16 @@
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "babel-core": "^7.0.0-bridge.0",
     "@babel/preset-env": "^7.9.5",
+    "@types/jest": "^25.2.1",
     "@vue/test-utils": "^1.0.0-beta.33",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^25.3.0",
     "css-loader": "^3.5.2",
     "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.9.1",
     "vue-style-loader": "^4.1.2",
@@ -24,6 +28,7 @@
   },
   "jest": {
     "moduleFileExtensions": [
+      "ts",
       "js",
       "vue"
     ],
@@ -31,8 +36,9 @@
       "@/(.+)": "<rootDir>/src/js/$1"
     },
     "transform": {
-      ".+\\.vue$": "<rootDir>/node_modules/vue-jest",
-      ".+\\.js$": "<rootDir>/node_modules/babel-jest"
+      "^.+\\.(ts|tsx)$": "ts-jest",
+      "^.+\\.vue$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     }
   }
 }
