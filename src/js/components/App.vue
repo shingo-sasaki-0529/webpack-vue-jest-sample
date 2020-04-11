@@ -6,9 +6,8 @@
     </section>
     <section>
       <div :key="todo.id" v-for="todo in todoList">
-        <Todo
-          :task="todo.task"
-          :done="todo.done"
+        <VTodo
+          :todo="todo"
           @onClickDeleteButton="() => deleteTodo(todo.id)"
           @onClickDoneButton="() => doneTodo(todo.id)"
         />
@@ -18,46 +17,31 @@
 </template>
 
 <script>
-import Todo from './Todo'
+import VTodo from './VTodo'
+import Todo from '@/models/todo'
 export default {
-  components: { Todo },
+  components: { VTodo },
   data() {
     return {
       newTaskName: '',
       todoList: [
-        {
-          id: Math.random(),
-          task: '歯を磨く',
-          done: false
-        },
-        {
-          id: Math.random(),
-          task: '風呂入る',
-          done: false
-        },
-        {
-          id: Math.random(),
-          task: '寝る',
-          done: false
-        },
+        new Todo('風呂はいる'),
+        new Todo('歯を磨く'),
+        new Todo('寝る'),
       ]
     }
   },
   methods: {
     addTodo() {
       if (this.newTaskName.length > 0) {
-        this.todoList.push({
-          id: Math.random(),
-          task: this.newTaskName,
-          done: false
-        })
+        this.todoList.push(new Todo(this.newTaskName))
         this.newTaskName = ""
       }
     },
     doneTodo(id) {
       const todo = this.todoList.find((t) => t.id === id)
       if (todo) {
-        todo.done = !todo.done
+        todo.toggle()
       }
     },
     deleteTodo(id) {

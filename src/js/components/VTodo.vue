@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <label class="task" :class="{ done }">{{ task }}</label>
+  <div class="v-todo">
+    <label class="task" :class="{ done: todo.done }">{{ todo.task }}</label>
     <button @click="$emit('onClickDoneButton')">Done!!</button>
     <button @click="$emit('onClickDeleteButton')">Delete</button>
   </div>
@@ -9,13 +9,9 @@
 <script>
 export default {
   props: {
-    task: {
-      type: String,
+    todo: {
+      type: Object,
       required: true
-    },
-    done: {
-      type: Boolean,
-      default: false
     }
   }
 };
