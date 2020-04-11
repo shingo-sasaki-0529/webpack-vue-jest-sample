@@ -27,6 +27,9 @@ export default class TodoManager {
     const todo = this.find(id);
     if (todo) {
       todo.toggle();
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -34,6 +37,9 @@ export default class TodoManager {
     const index = this.findIndex(id);
     if (index >= 0) {
       this.list.splice(index, 1);
+      return true;
+    } else {
+      return false;
     }
   }
 }
