@@ -9,7 +9,7 @@
         <VTodo
           :todo="todo"
           @onClickDeleteButton="() => deleteTodo(todo.id)"
-          @onClickDoneButton="() => doneTodo(todo.id)"
+          @onClickToggleButton="() => toggleTodo(todo.id)"
         />
       </div>
     </section>
@@ -18,37 +18,30 @@
 
 <script>
 import VTodo from './VTodo'
-import Todo from '@/models/todo'
+import TodoManager from '@/models/todoManager';
 export default {
   components: { VTodo },
   data() {
     return {
       newTaskName: '',
-      todoList: [
-        new Todo('風呂はいる'),
-        new Todo('歯を磨く'),
-        new Todo('寝る'),
-      ]
+      todoManager: new TodoManager('風呂はいる', '歯磨く', '寝る')
+    }
+  },
+  computed: {
+    todoList() {
+      return this.todoManager.list
     }
   },
   methods: {
     addTodo() {
-      if (this.newTaskName.length > 0) {
-        this.todoList.push(new Todo(this.newTaskName))
-        this.newTaskName = ""
-      }
+      this.todoManager.add(this.newTaskName)
+      this.newTaskName = ""
     },
-    doneTodo(id) {
-      const todo = this.todoList.find((t) => t.id === id)
-      if (todo) {
-        todo.toggle()
-      }
+    toggleTodo(id) {
+      this.todoManager.toggle(id)
     },
     deleteTodo(id) {
-      const index = this.todoList.findIndex((t) => t.id === id)
-      if (index >= 0) {
-        this.todoList.splice(index, 1)
-      }
+      this.todoManager.delete(id)
     }
   }
 }
