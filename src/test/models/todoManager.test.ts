@@ -1,4 +1,4 @@
-import TodoManager from "@/models/TodoManager";
+import TodoManager from '@/models/todoManager';
 
 describe("TodoManager", () => {
   describe("New", () => {
@@ -20,7 +20,7 @@ describe("TodoManager", () => {
       expect(todoManager.find(todo.id)).toBe(todo);
     });
     it("todoが存在しない場合はfalseが戻る", () => {
-      expect(todoManager.find("hoge")).toBe(false);
+      expect(todoManager.find(-123)).toBe(false);
     });
   });
 
@@ -32,7 +32,7 @@ describe("TodoManager", () => {
       expect(todoManager.findIndex(todo.id)).toBe(1);
     });
     it("todoが存在しない場合-1が戻る", () => {
-      expect(todoManager.findIndex("hoge")).toBe(-1);
+      expect(todoManager.findIndex(-456)).toBe(-1);
     });
   });
 
@@ -54,7 +54,7 @@ describe("TodoManager", () => {
     const todo = todoManager.list[1];
 
     it("todoが存在しない場合falseが戻る", () => {
-      expect(todoManager.toggle("hoge")).toBe(false);
+      expect(todoManager.toggle(-789)).toBe(false);
       expect(todo.done).toBe(false);
     });
     it("todoが存在する場合trueが戻り、状態が変わっている", () => {
@@ -68,7 +68,7 @@ describe("TodoManager", () => {
     const todo = todoManager.list[1];
 
     it("todoが存在しない場合falseが戻る", () => {
-      expect(todoManager.delete("hoge")).toBe(false);
+      expect(todoManager.delete(-987)).toBe(false);
       expect(todoManager.list.length).toBe(3);
     });
     it("todoが存在する場合trueが戻り、状態が変わっている", () => {
