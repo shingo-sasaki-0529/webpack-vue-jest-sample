@@ -7,7 +7,7 @@ webpackとVue(sfc)を使った極シンプルなTodoアプリを、Jestとvue-te
 ```bash
 $ git clone git@github.com:shingo-sasaki-0529/webpack-vue-jest-sample.git
 $ yarn install
-$ webpack
+$ yarn webpack
 $ open public/index.html
 ```
 
